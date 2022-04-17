@@ -19,6 +19,7 @@ public class RealServersHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
         ByteBuf clone = Unpooled.copiedBuffer(byteBuf);
+        System.out.println(clone.toString());
         channel.writeAndFlush(clone);
     }
 
