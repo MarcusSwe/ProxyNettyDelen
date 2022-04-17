@@ -7,14 +7,15 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class Proxy {
 
+    static EventLoopGroup mainGroup = new NioEventLoopGroup();
+
     public void start(){
-        EventLoopGroup clientConnections = new NioEventLoopGroup();
 
         try{
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(clientConnections)
+            bootstrap.group(mainGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new ClientConnectionInitializer());
+                    .childHandler(new ClientConnectionInitializer(mainGroup));
 
             bootstrap.bind(7000).sync().channel().closeFuture().sync();
 

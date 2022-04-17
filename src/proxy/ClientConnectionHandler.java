@@ -13,5 +13,8 @@ public class ClientConnectionHandler extends SimpleChannelInboundHandler<ByteBuf
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
         System.out.println("client säger saker");
+
+
+
     }
 }
