@@ -28,9 +28,12 @@ public class ClientConnectionInitializer extends ChannelInitializer<SocketChanne
         Channel channel = bootstrap.group(mainGroup)
                 .channel(NioSocketChannel.class)
                 .handler(new RealServersInitializer(socketChannel))
-                .connect("localhost", 8080).sync().channel();
+                .connect(Proxy.serversX.get(Proxy.proxyNumber).getHost(),
+                        Proxy.serversX.get(Proxy.proxyNumber).getPort()).sync().channel();
 
        pipeline.addLast(new HttpRequestDecoder());
        pipeline.addLast(new ClientConnectionHandler(channel));
+
+        Proxy.rotateServers();
     }
 }
