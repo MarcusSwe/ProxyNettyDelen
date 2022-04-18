@@ -26,8 +26,9 @@ public class ClientConnectionHandler extends SimpleChannelInboundHandler<Object>
     if (yeah instanceof HttpRequest) {
         HttpRequest request = this.request = (HttpRequest) yeah;
         HttpHeaders headers = request.headers();
-
+        headers.add("passwordx", "testlösen");
         System.out.println(headers.get("searchItem"));
+        System.out.println(headers.get("passwordx"));
 
     }
 

@@ -41,8 +41,10 @@ public class ClientConnectionInitializer extends ChannelInitializer<SocketChanne
 
         ChannelPipeline pipeline = socketChannel.pipeline();
 
+
+        //pipeline.addLast(new HttpResponseEncoder());
         pipeline.addLast(new HttpRequestDecoder());
-        pipeline.addLast(new HttpResponseEncoder());
+
         pipeline.addLast(new ClientConnectionHandler());
 
 
