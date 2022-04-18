@@ -20,8 +20,15 @@ public class Proxy {
             bootstrap.bind(7000).sync().channel().closeFuture().sync();
 
 
+
+
+
         } catch (Exception e){
             e.printStackTrace();
+        }
+
+        finally {
+            mainGroup.shutdownGracefully();
         }
 
 
